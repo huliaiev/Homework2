@@ -26,8 +26,11 @@ public class Main {
             System.out.println("Enter your login: ");
             String login = scanner.nextLine();
 
+
             /*
             Проверка зарегистрирован ли такой логин
+
+            user.searchByLogin(login);
 
              */
 
