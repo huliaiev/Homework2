@@ -1,6 +1,7 @@
 package ua.kiev.prog;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -92,17 +93,23 @@ public class User {
         String[] arraysString = string3.split("[, ?.@]+");
 
         for (String element : arraysString) {
-            System.out.println(element);
+            boolean find = false;
+            for (User user : usersArray) {
+                if (user.getLogin().equals(element)) {
+                    find = true;
+                    break;
+                }
+            }
+            if (find == false) {
+                System.out.println("Проверьте логины пользователей");
+            }
+            if (find == true) {
+                System.out.println("Введите текст сообщения для пользователей" + Arrays.toString(arraysString));
+                String string4 = scanner.nextLine();
+                System.out.println("Пользователи: " + Arrays.toString(arraysString) + "Вам сообщение:" + string4);
+            }
         }
-
-       /*
-       
-       проверка есть ли такие имена в базе
-
-        */
-
     }
-
 
     @Override
     public String toString() {

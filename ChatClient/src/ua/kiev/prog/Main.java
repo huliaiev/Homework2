@@ -57,15 +57,13 @@ public class Main {
             th.setDaemon(true);
             th.start();
 
-            System.out.println("Enter your message: ");
             System.out.println("Нажмите 1, чтобы получить список всех пользователей ");
             System.out.println("Нажмите 2, чтобы написать сообщение пользователю ");
+            System.out.println("Нажмите 3, чтобы создать чат ");
 
             while (true) {
                 String text = scanner.nextLine();
                 if (text.isEmpty()) break;
-
-
 
                 Message m = new Message(login1, text);
                 int res = m.send(Utils.getURL() + "/add");
@@ -75,21 +73,20 @@ public class Main {
                     return;
                 }
 
-                //список всех пользователей
-                if (text.equals("1")) {
-                    user.showUsers();
-                }
+                switch (text) {
+                    case "1":
+                        user.showUsers();
+                        break;
+                    case "2":
+                        user.privateMessages();
+                        break;
+                    case "3":
+                        user.chatRoom();
+                        break;
 
-                //сообщение для пользователя
-                if (text.equals("2")) {
-                    user.privateMessages();
+                    default:
+                        return;
                 }
-
-                //чат комната
-                if (text.equals("3")) {
-                    user.chatRoom();
-                }
-
             }
         } catch (IOException ex) {
             ex.printStackTrace();
